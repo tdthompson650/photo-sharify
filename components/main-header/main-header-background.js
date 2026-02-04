@@ -1,26 +1,30 @@
-import classes from './main-header-background.module.css';
-
 export default function MainHeaderBackground() {
-    return (
-        <div className={classes['header-background']}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop
-                            offset="0%"
-                            style={{ stopColor: '#59453c', stopOpacity: '1' }}
-                        />
-                        <stop
-                            offset="100%"
-                            style={{ stopColor: '#8f3a09', stopOpacity: '1' }}
-                        />
-                    </linearGradient>
-                </defs>
-                <path
-                    fill="url(#gradient)"
-                    d="M0,256L48,240C96,224,192,192,288,181.3C384,171,480,181,576,186.7C672,192,768,192,864,181.3C960,171,1056,149,1152,133.3C1248,117,1344,107,1392,101.3L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-                ></path>
-            </svg>
-        </div>
-    );
+  return (
+    <div className="absolute inset-x-0 top-0 z-0 min-h-[14rem] w-full sm:min-h-[12rem] md:min-h-[11rem]">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 320"
+        preserveAspectRatio="none"
+        className="absolute inset-0 block h-full w-full"
+      >
+        <defs>
+          <linearGradient
+            id="header-gradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="0%"
+          >
+            <stop offset="0%" stopColor="#0f766e" stopOpacity="1" />
+            <stop offset="100%" stopColor="#047857" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+        {/* Full rectangle with wavy bottom - wave positioned low so teal covers header */}
+        <path
+          fill="url(#header-gradient)"
+          d="M0,0 L1440,0 L1440,320 L1392,310 C1344,300,1248,285,1152,278 C1056,271,960,271,864,278 C768,285,672,300,576,308 C480,316,384,316,288,308 C192,300,96,285,48,278 L0,271 Z"
+        />
+      </svg>
+    </div>
+  );
 }

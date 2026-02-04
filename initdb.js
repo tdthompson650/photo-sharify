@@ -1,199 +1,140 @@
+const path = require('path');
 const sql = require('better-sqlite3');
-const db = sql('meals.db');
 
-const dummyMeals = [
-  {
-    title: 'Juicy Cheese Burger',
-    slug: 'juicy-cheese-burger',
-    image: '/images/burger.jpg',
-    summary:
-      'A mouth-watering burger with a juicy beef patty and melted cheese, served in a soft bun.',
-    instructions: `
-      1. Prepare the patty:
-         Mix 200g of ground beef with salt and pepper. Form into a patty.
+const db = sql(path.join(process.cwd(), 'photos.db'));
 
-      2. Cook the patty:
-         Heat a pan with a bit of oil. Cook the patty for 2-3 minutes each side, until browned.
-
-      3. Assemble the burger:
-         Toast the burger bun halves. Place lettuce and tomato on the bottom half. Add the cooked patty and top with a slice of cheese.
-
-      4. Serve:
-         Complete the assembly with the top bun and serve hot.
+const dummyPhotos = [
+   {
+      title: 'Golden Hour Over Paris',
+      slug: 'golden-hour-over-paris',
+      image: '/images/eiffeltower.png',
+      location: 'Paris, France',
+      description: `
+      The Eiffel Tower rises above the River Seine as the sun sets over Paris, 
+      casting warm golden and amber tones across the city. 
+      Reflections shimmer on the water while historic bridges and classic Haussmann 
+      architecture frame one of the world’s most iconic urban landscapes.
     `,
-    creator: 'John Doe',
-    creator_email: 'johndoe@example.com',
-  },
-  {
-    title: 'Spicy Curry',
-    slug: 'spicy-curry',
-    image: '/images/curry.jpg',
-    summary:
-      'A rich and spicy curry, infused with exotic spices and creamy coconut milk.',
-    instructions: `
-      1. Chop vegetables:
-         Cut your choice of vegetables into bite-sized pieces.
-
-      2. Sauté vegetables:
-         In a pan with oil, sauté the vegetables until they start to soften.
-
-      3. Add curry paste:
-         Stir in 2 tablespoons of curry paste and cook for another minute.
-
-      4. Simmer with coconut milk:
-         Pour in 500ml of coconut milk and bring to a simmer. Let it cook for about 15 minutes.
-
-      5. Serve:
-         Enjoy this creamy curry with rice or bread.
+      creator: 'John Doe',
+      creator_email: 'johndoe@example.com',
+   },
+   {
+      title: 'The Lost City in the Clouds',
+      slug: 'the-lost-city-in-the-clouds',
+      image: '/images/machupicchu.png',
+      location: 'Machu Picchu, Peru',
+      description: `
+      Nestled high in the Andes Mountains, Machu Picchu emerges from the mist in soft afternoon light. 
+      The ancient stone terraces and ruins contrast vividly with the surrounding green peaks, 
+      creating a powerful sense of scale, mystery, and timeless human craftsmanship.
     `,
-    creator: 'Max Schwarz',
-    creator_email: 'max@example.com',
-  },
-  {
-    title: 'Homemade Dumplings',
-    slug: 'homemade-dumplings',
-    image: '/images/dumplings.jpg',
-    summary:
-      'Tender dumplings filled with savory meat and vegetables, steamed to perfection.',
-    instructions: `
-      1. Prepare the filling:
-         Mix minced meat, shredded vegetables, and spices.
-
-      2. Fill the dumplings:
-         Place a spoonful of filling in the center of each dumpling wrapper. Wet the edges and fold to seal.
-
-      3. Steam the dumplings:
-         Arrange dumplings in a steamer. Steam for about 10 minutes.
-
-      4. Serve:
-         Enjoy these dumplings hot, with a dipping sauce of your choice.
+      creator: 'Max Schwarz',
+      creator_email: 'max@example.com',
+   },
+   {
+      title: 'Canyon of Fire and Stone',
+      slug: 'canyon-of-fire-and-stone',
+      image: '/images/grandcanyon.png',
+      location: 'Grand Canyon, Arizona, USA',
+      description: `
+      As daylight fades, the Grand Canyon glows with deep reds, purples, and golds, 
+      revealing layers carved by millions of years of erosion. 
+      The Colorado River winds through the vast landscape below, 
+      emphasizing the immense depth and natural drama of the canyon at sunset.
     `,
-    creator: 'Emily Chen',
-    creator_email: 'emilychen@example.com',
-  },
-  {
-    title: 'Classic Mac n Cheese',
-    slug: 'classic-mac-n-cheese',
-    image: '/images/macncheese.jpg',
-    summary:
-      "Creamy and cheesy macaroni, a comforting classic that's always a crowd-pleaser.",
-    instructions: `
-      1. Cook the macaroni:
-         Boil macaroni according to package instructions until al dente.
-
-      2. Prepare cheese sauce:
-         In a saucepan, melt butter, add flour, and gradually whisk in milk until thickened. Stir in grated cheese until melted.
-
-      3. Combine:
-         Mix the cheese sauce with the drained macaroni.
-
-      4. Bake:
-         Transfer to a baking dish, top with breadcrumbs, and bake until golden.
-
-      5. Serve:
-         Serve hot, garnished with parsley if desired.
+      creator: 'Emily Chen',
+      creator_email: 'emilychen@example.com',
+   },
+   {
+      title: 'Spring Tranquility in Kyoto',
+      slug: 'spring-tranquility-in-kyoto',
+      image: '/images/fushimi.png',
+      location: 'Kyoto, Japan',
+      description: `
+      A traditional red torii gate stands amid blooming cherry blossoms as 
+      Mount Fuji rises in the distance. Soft evening light bathes the scene, 
+      blending natural beauty with cultural symbolism 
+      and evoking the quiet elegance of Japan’s historic heart.
     `,
-    creator: 'Laura Smith',
-    creator_email: 'laurasmith@example.com',
-  },
-  {
-    title: 'Authentic Pizza',
-    slug: 'authentic-pizza',
-    image: '/images/pizza.jpg',
-    summary:
-      'Hand-tossed pizza with a tangy tomato sauce, fresh toppings, and melted cheese.',
-    instructions: `
-      1. Prepare the dough:
-         Knead pizza dough and let it rise until doubled in size.
-
-      2. Shape and add toppings:
-         Roll out the dough, spread tomato sauce, and add your favorite toppings and cheese.
-
-      3. Bake the pizza:
-         Bake in a preheated oven at 220°C for about 15-20 minutes.
-
-      4. Serve:
-         Slice hot and enjoy with a sprinkle of basil leaves.
+      creator: 'Laura Smith',
+      creator_email: 'laurasmith@example.com',
+   },
+   {
+      title: 'City That Never Sleeps',
+      slug: 'city-that-never-sleeps',
+      image: '/images/newyork.png',
+      location: 'New York City, USA',
+      description: `
+      New York’s skyline comes alive at dusk as the Empire State Building glows against a colorful twilight sky. 
+      Skyscrapers stretch toward the horizon while rivers and bridges reflect the city’s energy, 
+      capturing the pulse of one of the world’s most dynamic urban centers.
     `,
-    creator: 'Mario Rossi',
-    creator_email: 'mariorossi@example.com',
-  },
-  {
-    title: 'Wiener Schnitzel',
-    slug: 'wiener-schnitzel',
-    image: '/images/schnitzel.jpg',
-    summary:
-      'Crispy, golden-brown breaded veal cutlet, a classic Austrian dish.',
-    instructions: `
-      1. Prepare the veal:
-         Pound veal cutlets to an even thickness.
-
-      2. Bread the veal:
-         Coat each cutlet in flour, dip in beaten eggs, and then in breadcrumbs.
-
-      3. Fry the schnitzel:
-      Heat oil in a pan and fry each schnitzel until golden brown on both sides.
-
-      4. Serve:
-      Serve hot with a slice of lemon and a side of potato salad or greens.
+      creator: 'Mario Rossi',
+      creator_email: 'mariorossi@example.com',
+   },
+   {
+      title: 'Alpine Reflections',
+      slug: 'alpine-reflections',
+      image: '/images/morainelake.png',
+      location: 'Banff National Park, Alberta, Canada',
+      description: `
+      Moraine Lake mirrors the snow-capped peaks of the Canadian Rockies under warm sunset light. 
+      Turquoise waters, evergreen forests, and rugged mountain faces combine to create 
+      a serene yet powerful alpine landscape shaped by nature at its finest.
  `,
-    creator: 'Franz Huber',
-    creator_email: 'franzhuber@example.com',
-  },
-  {
-    title: 'Fresh Tomato Salad',
-    slug: 'fresh-tomato-salad',
-    image: '/images/tomato-salad.jpg',
-    summary:
-      'A light and refreshing salad with ripe tomatoes, fresh basil, and a tangy vinaigrette.',
-    instructions: `
-      1. Prepare the tomatoes:
-        Slice fresh tomatoes and arrange them on a plate.
-    
-      2. Add herbs and seasoning:
-         Sprinkle chopped basil, salt, and pepper over the tomatoes.
-    
-      3. Dress the salad:
-         Drizzle with olive oil and balsamic vinegar.
-    
-      4. Serve:
-         Enjoy this simple, flavorful salad as a side dish or light meal.
+      creator: 'Franz Huber',
+      creator_email: 'franzhuber@example.com',
+   },
+   {
+      title: 'Aegean Sunset',
+      slug: 'aegean-sunset',
+      image: '/images/santorini.png',
+      location: 'Santorini, Greece',
+      description: `
+      Whitewashed buildings and blue-domed churches cascade along 
+      the cliffs of Santorini as the sun sets over the Aegean Sea. 
+      Soft pastel skies and glowing stone architecture capture the 
+      island’s romantic atmosphere and timeless Mediterranean charm.
     `,
-    creator: 'Sophia Green',
-    creator_email: 'sophiagreen@example.com',
-  },
+      creator: 'Sophia Green',
+      creator_email: 'sophiagreen@example.com',
+   },
 ];
 
+db.prepare('DROP TABLE IF EXISTS photos').run();
+
 db.prepare(`
-   CREATE TABLE IF NOT EXISTS meals (
+   CREATE TABLE photos (
        id INTEGER PRIMARY KEY AUTOINCREMENT,
        slug TEXT NOT NULL UNIQUE,
        title TEXT NOT NULL,
        image TEXT NOT NULL,
-       summary TEXT NOT NULL,
-       instructions TEXT NOT NULL,
+       location TEXT NOT NULL,
+       description TEXT NOT NULL,
        creator TEXT NOT NULL,
        creator_email TEXT NOT NULL
     )
 `).run();
 
 async function initData() {
-  const stmt = db.prepare(`
-      INSERT INTO meals VALUES (
+   db.prepare('DELETE FROM photos').run();
+
+   const stmt = db.prepare(`
+      INSERT INTO photos VALUES (
          null,
          @slug,
          @title,
          @image,
-         @summary,
-         @instructions,
+         @location,
+         @description,
          @creator,
          @creator_email
       )
    `);
 
-  for (const meal of dummyMeals) {
-    stmt.run(meal);
-  }
+   for (const photo of dummyPhotos) {
+      stmt.run(photo);
+   }
 }
 
 initData();

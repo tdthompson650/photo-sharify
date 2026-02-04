@@ -21,7 +21,7 @@
 /build
 
 # database
-meals.db
+photos.db
 
 # misc
 .DS_Store
