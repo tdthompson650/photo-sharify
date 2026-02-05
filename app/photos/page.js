@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 
 import PhotosGrid from '@/components/photos/photos-grid';
+import PhotosGridSkeleton from '@/components/photos/photos-grid-skeleton';
 import { getPhotos } from '@/lib/photos';
 
 export const dynamic = 'force-dynamic';
@@ -13,6 +14,20 @@ export const metadata = {
 
 async function Photos() {
   const photos = await getPhotos();
+
+  if (!photos || photos.length === 0) {
+    return (
+      <div className="mx-auto my-16 w-full max-w-3xl px-4 text-center">
+        <h2 className="text-2xl font-bold text-slate-800 sm:text-3xl">
+          No photos yet
+        </h2>
+        <p className="mt-3 text-lg leading-relaxed text-slate-600 max-w-xl mx-auto">
+          Check back soon—new photos will show up here when they’re added.
+        </p>
+      </div>
+    );
+  }
+
   return <PhotosGrid photos={photos} />;
 }
 
@@ -41,11 +56,7 @@ export default function PhotosPage() {
       </header>
       <main className="mx-auto w-[92%] max-w-[85rem] px-4 sm:px-0">
         <Suspense
-          fallback={
-            <p className="animate-pulse text-center text-lg font-medium text-emerald-600">
-              Fetching photos...
-            </p>
-          }
+          fallback={<PhotosGridSkeleton />}
         >
           <Photos />
         </Suspense>
