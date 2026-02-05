@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import Image from "next/image";
+import { notFound } from "next/navigation";
 
-import { getPhoto } from '@/lib/photos';
+import { getPhoto } from "@/lib/photos";
 
 export async function generateMetadata({ params }) {
   const { photoSlug } = await params;
-  const photo = getPhoto(photoSlug);
+  const photo = await getPhoto(photoSlug);
 
   if (!photo) {
-    return { title: 'Photo not found' };
+    return { title: "Photo not found" };
   }
 
   return {
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
 
 export default async function PhotoDetailsPage({ params }) {
   const { photoSlug } = await params;
-  const photo = getPhoto(photoSlug);
+  const photo = await getPhoto(photoSlug);
 
   if (!photo) {
     notFound();
@@ -33,6 +33,7 @@ export default async function PhotoDetailsPage({ params }) {
             src={photo.image}
             alt={photo.title}
             fill
+            sizes="(min-width: 768px) 40rem, 100vw"
             className="object-cover"
             priority
           />
@@ -47,6 +48,7 @@ export default async function PhotoDetailsPage({ params }) {
           <p className="text-lg text-slate-600">{photo.location}</p>
         </div>
       </header>
+
       <main className="mx-auto my-12 w-[92%] max-w-[85rem] px-4 sm:px-0">
         <div className="prose prose-lg max-w-none rounded-xl bg-beige-50 p-4 shadow-md shadow-stone-300 sm:p-6 md:p-8">
           <h2 className="text-xl font-bold text-slate-800">Description</h2>

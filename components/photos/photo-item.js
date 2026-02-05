@@ -6,7 +6,16 @@ export default function PhotoItem({ title, slug, image, location, creator }) {
     <article className="flex h-full flex-col overflow-hidden rounded-xl bg-beige-50 shadow-md shadow-stone-300 transition-all duration-300 hover:shadow-lg">
       <header>
         <div className="relative h-56 sm:h-72 md:h-80">
-          <Image src={image} alt={title} fill className="object-cover" />
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes="
+            (min-width: 1024px) 33vw,
+            (min-width: 640px) 50vw,
+            100vw"
+          />
         </div>
         <div className="space-y-1 px-4 pt-3 sm:px-5 sm:pt-4">
           <h2 className="m-0 text-xl font-bold text-slate-800 sm:text-2xl">{title}</h2>

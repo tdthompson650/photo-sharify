@@ -50,6 +50,7 @@ export default function ImagePicker({ label, name }) {
               src={pickedImage}
               alt="Image selected by the user"
               fill
+              sizes="(min-width: 640px) 10rem, 8rem"
               className="object-cover"
             />
           )}
