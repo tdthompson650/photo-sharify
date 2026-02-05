@@ -4,6 +4,8 @@ import { Suspense } from 'react';
 import PhotosGrid from '@/components/photos/photos-grid';
 import { getPhotos } from '@/lib/photos';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'All Photos',
   description: 'Browse all photos shared by our community.',

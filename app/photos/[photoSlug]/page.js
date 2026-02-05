@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 
 import { getPhoto } from "@/lib/photos";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }) {
   const { photoSlug } = await params;
   const photo = await getPhoto(photoSlug);
