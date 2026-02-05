@@ -6,26 +6,25 @@ import { getPhoto } from "@/lib/photos";
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }) {
-  const { photoSlug } = await params;
+  const resolved = await params;
+  const photoSlug = resolved?.photoSlug;
+
+  if (!photoSlug) return { title: "Photo not found" };
+
   const photo = await getPhoto(photoSlug);
+  if (!photo) return { title: "Photo not found" };
 
-  if (!photo) {
-    return { title: "Photo not found" };
-  }
-
-  return {
-    title: photo.title,
-    description: photo.location,
-  };
+  return { title: photo.title, description: photo.location };
 }
 
-export default async function PhotoDetailsPage({ params }) {
-  const { photoSlug } = await params;
-  const photo = await getPhoto(photoSlug);
 
-  if (!photo) {
-    notFound();
-  }
+export default async function PhotoDetailsPage({ params }) {
+  const resolved = await params;
+  const photoSlug = resolved?.photoSlug;
+  if (!photoSlug) notFound();
+
+  const photo = await getPhoto(photoSlug);
+  if (!photo) notFound();
 
   return (
     <>
@@ -54,7 +53,7 @@ export default async function PhotoDetailsPage({ params }) {
       <main className="mx-auto my-12 w-[92%] max-w-[85rem] px-4 sm:px-0">
         <div className="prose prose-lg max-w-none rounded-xl bg-beige-50 p-4 shadow-md shadow-stone-300 sm:p-6 md:p-8">
           <h2 className="text-xl font-bold text-slate-800">Description</h2>
-          <p className="whitespace-pre-wrap text-slate-700">{photo.description}</p>
+          <p className="whitespace-pre-line text-slate-700">{photo.description}</p>
         </div>
       </main>
     </>
