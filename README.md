@@ -58,7 +58,7 @@ A photo-sharing app built with Next.js. Browse a community photo gallery, view i
 
 The app uses a single SQLite file, `photos.db`, created and seeded by `initdb.js`. Schema and sample data are defined there; there is no separate ORM or migrations setup. To reset the database, run `node initdb.js` again (this drops and recreates the `photos` table).
 
-## Learn More
+## Learn More 
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Next.js Deployment](https://nextjs.org/docs/app/building-your-application/deploying)
