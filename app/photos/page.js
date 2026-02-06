@@ -5,6 +5,7 @@ import PhotosGrid from '@/components/photos/photos-grid';
 import PhotosGridSkeleton from '@/components/photos/photos-grid-skeleton';
 import { getPhotos } from '@/lib/photos';
 
+// Disable static rendering to ensure fresh DB reads in demo
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
@@ -21,7 +22,7 @@ async function Photos() {
         <h2 className="text-2xl font-bold text-slate-800 sm:text-3xl">
           No photos yet
         </h2>
-        <p className="mt-3 text-lg leading-relaxed text-slate-600 max-w-xl mx-auto">
+        <p className="mx-auto mt-3 max-w-xl text-lg leading-relaxed text-slate-600">
           Check back soon—new photos will show up here when they’re added.
         </p>
       </div>
@@ -34,7 +35,12 @@ async function Photos() {
 export default function PhotosPage() {
   return (
     <>
-      <header className="mx-auto mb-12 w-[92%] max-w-[85rem] space-y-4 px-4 pt-24 sm:pt-32 md:mb-20 md:pt-40 lg:pt-48">
+      <header
+        className={
+          'mx-auto mb-12 w-[92%] max-w-[85rem] space-y-4 px-4 pt-24 ' +
+          'sm:pt-32 md:mb-20 md:pt-40 lg:pt-48'
+        }
+      >
         <h1 className="text-2xl font-bold text-slate-800 sm:text-3xl">
           Beautiful photos, shared{' '}
           <span className="bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
@@ -55,9 +61,7 @@ export default function PhotosPage() {
         </p>
       </header>
       <main className="mx-auto w-[92%] max-w-[85rem] px-4 sm:px-0">
-        <Suspense
-          fallback={<PhotosGridSkeleton />}
-        >
+        <Suspense fallback={<PhotosGridSkeleton />}>
           <Photos />
         </Suspense>
       </main>

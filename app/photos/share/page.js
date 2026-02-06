@@ -1,8 +1,14 @@
 'use client';
 
+// Share form is UI-only for the demo; submit is disabled and no server action is called.
 import { useState } from 'react';
 
-import ImagePicker from '../image-picker';
+import ImagePicker from '@/components/ui/image-picker';
+
+const inputClassName =
+  'w-full rounded-lg border border-stone-300 bg-beige-50 px-4 py-2.5 ' +
+  'text-slate-800 outline-none transition-colors focus:border-emerald-500 ' +
+  'focus:ring-2 focus:ring-emerald-500/20';
 
 export default function SharePhotoPage() {
   const [formData, setFormData] = useState({
@@ -33,7 +39,10 @@ export default function SharePhotoPage() {
       <main className="mx-auto w-[92%] max-w-[85rem] px-4 pb-24 sm:px-0">
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="mx-auto max-w-3xl space-y-6 rounded-xl bg-beige-50 p-4 shadow-md shadow-stone-300 sm:p-6 md:p-8"
+          className={
+            'mx-auto max-w-3xl space-y-6 rounded-xl bg-beige-50 p-4 ' +
+            'shadow-md shadow-stone-300 sm:p-6 md:p-8'
+          }
         >
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="space-y-2">
@@ -50,7 +59,7 @@ export default function SharePhotoPage() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full rounded-lg border border-stone-300 bg-beige-50 px-4 py-2.5 text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                className={inputClassName}
               />
             </div>
             <div className="space-y-2">
@@ -67,7 +76,7 @@ export default function SharePhotoPage() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full rounded-lg border border-stone-300 bg-beige-50 px-4 py-2.5 text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                className={inputClassName}
               />
             </div>
           </div>
@@ -85,7 +94,7 @@ export default function SharePhotoPage() {
               value={formData.title}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-stone-300 bg-beige-50 px-4 py-2.5 text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+              className={inputClassName}
             />
           </div>
           <div className="space-y-2">
@@ -102,7 +111,7 @@ export default function SharePhotoPage() {
               value={formData.location}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-stone-300 bg-beige-50 px-4 py-2.5 text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+              className={inputClassName}
             />
           </div>
           <div className="space-y-2">
@@ -119,19 +128,22 @@ export default function SharePhotoPage() {
               value={formData.description}
               onChange={handleChange}
               required
-              className="w-full rounded-lg border border-stone-300 bg-beige-50 px-4 py-2.5 text-slate-800 outline-none transition-colors focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+              className={inputClassName}
             />
           </div>
           <ImagePicker label="Your image" name="image" />
           <div className="pt-2">
-            <p className="mb-3 text-sm text-slate-600">
+            <p className="mb-3 text-sm text-slate-600 italic">
               Demo mode: uploads are disabled in this deployment.
             </p>
             <div className="flex justify-end">
               <button
                 type="submit"
                 disabled
-                className="cursor-not-allowed rounded-lg bg-emerald-600 px-5 py-2.5 font-semibold text-white opacity-60"
+                className={
+                  'cursor-not-allowed rounded-lg bg-emerald-600 px-5 py-2.5 ' +
+                  'font-semibold text-white opacity-60'
+                }
                 title="Uploads are disabled in demo mode"
               >
                 Share Photo

@@ -1,8 +1,8 @@
-import pg from "pg";
+import pg from 'pg';
 const { Client } = pg;
 
 const url = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
-if (!url) throw new Error("Missing DATABASE_URL(_UNPOOLED)");
+if (!url) throw new Error('Missing DATABASE_URL(_UNPOOLED)');
 
 const sql = `
 BEGIN;
@@ -24,14 +24,17 @@ COMMIT;
 async function main() {
   const client = new Client({
     connectionString: url,
-    ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+    ssl:
+      process.env.NODE_ENV === 'production'
+        ? { rejectUnauthorized: false }
+        : false,
   });
 
   await client.connect();
   await client.query(sql);
   await client.end();
 
-  console.log("DB schema initialized.");
+  console.log('DB schema initialized.');
 }
 
 main().catch((e) => {

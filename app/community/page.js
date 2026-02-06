@@ -51,19 +51,11 @@ export default function CommunityPage() {
           {PERKS.map((perk) => (
             <li
               key={perk.title}
-              className="
-                rounded-2xl
-                border border-slate-200
-              bg-white/60
-                p-6
-                shadow-sm
-                transition-all
-                duration-200
-                ease-out
-                hover:-translate-y-0.5
-                hover:shadow-md
-                sm:p-7
-                lg:p-8"
+              className={
+                'rounded-2xl border border-slate-200 bg-white/60 p-6 shadow-sm ' +
+                'transition-all duration-200 ease-out hover:-translate-y-0.5 ' +
+                'hover:shadow-md sm:p-7 lg:p-8'
+              }
             >
               <div className="mx-auto mb-6 flex items-center justify-center">
                 <Image

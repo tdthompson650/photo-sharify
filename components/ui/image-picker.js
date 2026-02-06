@@ -43,7 +43,13 @@ export default function ImagePicker({ label, name }) {
         {label}
       </label>
       <div className="flex flex-wrap items-start gap-4 sm:gap-6">
-        <div className="relative flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-lg border-2 border-dashed border-stone-300 bg-beige-100 text-center text-stone-500 sm:h-40 sm:w-40">
+        <div
+          className={
+            'relative flex h-32 w-32 shrink-0 items-center justify-center ' +
+            'overflow-hidden rounded-lg border-2 border-dashed border-stone-300 ' +
+            'bg-beige-100 text-center text-stone-500 sm:h-40 sm:w-40'
+          }
+        >
           {!pickedImage && <p className="px-4 text-sm">No image picked yet.</p>}
           {pickedImage && (
             <Image
@@ -68,7 +74,11 @@ export default function ImagePicker({ label, name }) {
         <button
           type="button"
           onClick={handlePickImage}
-          className="rounded-lg bg-stone-200 px-6 py-2.5 font-medium text-stone-700 transition-colors hover:bg-stone-300 focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+          className={
+            'rounded-lg bg-stone-200 px-6 py-2.5 font-medium text-stone-700 ' +
+            'transition-colors hover:bg-stone-300 focus:outline-none ' +
+            'focus:ring-2 focus:ring-emerald-500/50'
+          }
         >
           Pick Image
         </button>

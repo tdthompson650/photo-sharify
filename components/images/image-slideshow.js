@@ -40,12 +40,15 @@ export default function ImageSlideshow() {
           key={i}
           src={img.image}
           alt={img.alt}
+          aria-hidden={i !== currentImageIndex}
           fill
           sizes="(min-width: 768px) 40rem, 100vw"
-          className={`absolute inset-0 object-cover transition duration-500 ease-in-out ${i === currentImageIndex
+          className={
+            'absolute inset-0 object-cover transition duration-500 ease-in-out ' +
+            (i === currentImageIndex
               ? 'z-10 scale-100 opacity-100'
-              : 'scale-110 -translate-x-4 -rotate-[5deg] opacity-0'
-            }`}
+              : 'scale-110 -translate-x-4 -rotate-[5deg] opacity-0')
+          }
         />
       ))}
     </div>

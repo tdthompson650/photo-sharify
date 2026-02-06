@@ -14,12 +14,9 @@
     "next": "16.1.6",
     "pg": "^8.18.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "slugify": "^1.6.6",
-    "xss": "^1.0.15"
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
-    "@tailwindcss/line-clamp": "^0.4.4",
     "autoprefixer": "^10.4.24",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",

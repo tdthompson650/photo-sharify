@@ -1,8 +1,8 @@
-import pg from "pg";
+import pg from 'pg';
 const { Client } = pg;
 
 const url = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
-if (!url) throw new Error("Missing DATABASE_URL(_UNPOOLED)");
+if (!url) throw new Error('Missing DATABASE_URL(_UNPOOLED)');
 
 const dummyPhotos = [
   {
@@ -105,7 +105,10 @@ const dummyPhotos = [
 async function main() {
   const client = new Client({
     connectionString: url,
-    ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+    ssl:
+      process.env.NODE_ENV === 'production'
+        ? { rejectUnauthorized: false }
+        : false,
   });
 
   await client.connect();
@@ -132,7 +135,7 @@ async function main() {
   }
 
   await client.end();
-  console.log(`Seeded ${dummyPhotos.length} photos.`);
+  console.log('Seeded', dummyPhotos.length, 'photos.');
 }
 
 main().catch((e) => {

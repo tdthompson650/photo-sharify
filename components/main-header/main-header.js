@@ -9,7 +9,12 @@ export default function MainHeader() {
   return (
     <div className="relative">
       <MainHeaderBackground />
-      <header className="relative z-10 flex flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:gap-0 md:px-[10%] md:py-8">
+      <header
+        className={
+          'relative z-10 flex flex-col gap-4 px-4 py-6 ' +
+          'sm:flex-row sm:items-center sm:justify-between sm:gap-0 md:px-[10%] md:py-8'
+        }
+      >
         <Link
           href="/"
           className="flex shrink-0 items-center gap-3 text-white sm:gap-6 md:gap-8"
@@ -17,7 +22,10 @@ export default function MainHeader() {
           <Image
             src={logoImage}
             alt="PhotoSharify"
-            className="h-14 w-14 shrink-0 object-contain drop-shadow-lg sm:h-16 sm:w-16 md:h-20 md:w-20"
+            className={
+              'h-14 w-14 shrink-0 object-contain drop-shadow-lg ' +
+              'sm:h-16 sm:w-16 md:h-20 md:w-20'
+            }
           />
           <span className="whitespace-nowrap text-base font-bold uppercase tracking-widest sm:text-lg">
             PhotoSharify

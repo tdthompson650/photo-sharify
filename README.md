@@ -1,13 +1,14 @@
-# Photo Sharify
+# PhotoSharify
 
-A photo-sharing app built with Next.js. Browse a community photo gallery, view individual photos, and share your own with title, location, and description.
+PhotoSharify is a portfolio demo project built with Next.js that showcases a modern App Router architecture, server components, and a PostgreSQL-backed data layer. The app allows users to browse a community photo gallery and view individual photo pages, with a polished UI and responsive layout.
+
+Uploads are intentionally disabled in the live demo — the project focuses on UI, routing, data fetching, and component design rather than full media storage.
 
 ## Tech Stack
 
-- **Next.js 16** (App Router) with **React 19**
+- **Next.js 16** (App Router, Server Components) with **React 19**
 - **PostgreSQL** via `pg` (raw SQL, no ORM)
 - **Tailwind CSS** for styling
-- **slugify** and **xss** for safe slugs and sanitized content
 
 ## Getting Started
 
@@ -65,14 +66,22 @@ A photo-sharing app built with Next.js. Browse a community photo gallery, view i
 
 ## Features
 
-- **Home** – Landing page with links to community and share
-- **Community** – Grid of all shared photos
-- **Photo detail** – Individual photo page by slug (e.g. `/photos/golden-hour-over-paris`)
-- **Share** – Form to upload a photo with title, location, description, and creator info
+- **Home** – Responsive landing page with image slideshow and clear calls to action
+- **Photo gallery** – Community grid layout with optimized images and hover interactions
+- **Photo detail pages** – Dynamic routes by slug with server-side data fetching and metadata
+- **Share form (demo)** – Styled form UI demonstrating validation and UX (uploads disabled in demo)
+
+## Design & Architecture Notes
+
+- Uses the Next.js App Router with a clear separation between server and client components
+- Data access is handled via raw SQL using `pg` to keep the data layer explicit and transparent
+- Images are optimized with `next/image` and responsive sizing
+- UI is built with Tailwind CSS, focusing on readability, spacing, and accessibility
+- Demo constraints (no uploads) are clearly communicated in the UI
 
 ## Database
 
-The app uses **PostgreSQL**. Set `DATABASE_URL` (and optionally `DATABASE_URL_UNPOOLED` for scripts) in `.env.local`. Schema is created with `npm run db:init`; sample data is loaded with `npm run db:seed`. There is no ORM or migrations tool—queries live in `lib/photos.js` and scripts in `scripts/`.
+The app uses **PostgreSQL**. Set `DATABASE_URL` (and optionally `DATABASE_URL_UNPOOLED` for scripts) in `.env.local`. Schema is created with `npm run db:init`; sample data is loaded with `npm run db:seed`. There is no ORM or migrations tool—queries live in `lib/photos.js` and scripts in `scripts/`. Seed images are served from `public/images/`; the home-page slideshow uses bundled assets from `assets/`.
 
 ## Learn More 
 
