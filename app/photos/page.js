@@ -5,7 +5,7 @@ import PhotosGrid from '@/components/photos/photos-grid';
 import PhotosGridSkeleton from '@/components/photos/photos-grid-skeleton';
 import { getPhotos } from '@/lib/photos';
 
-// Disable static rendering to ensure fresh DB reads in demo
+// Disable static rendering to ensure fresh DB reads
 export const dynamic = 'force-dynamic';
 
 export const metadata = {

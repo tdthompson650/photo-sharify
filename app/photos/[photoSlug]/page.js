@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { getPhoto } from '@/lib/photos';
 
-// Disable static rendering to ensure fresh DB reads in demo
+// Disable static rendering to ensure fresh DB reads
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
