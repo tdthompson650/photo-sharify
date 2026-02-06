@@ -27,7 +27,7 @@ async function main() {
     ssl:
       process.env.NODE_ENV === 'production'
         ? { rejectUnauthorized: true }
-        : false,
+        : true,
   });
 
   await client.connect();
