@@ -26,7 +26,7 @@ async function main() {
     connectionString: url,
     ssl:
       process.env.NODE_ENV === 'production'
-        ? { rejectUnauthorized: false }
+        ? { rejectUnauthorized: true }
         : false,
   });
 

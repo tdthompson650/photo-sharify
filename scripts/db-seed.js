@@ -107,8 +107,8 @@ async function main() {
     connectionString: url,
     ssl:
       process.env.NODE_ENV === 'production'
-        ? { rejectUnauthorized: false }
-        : false,
+        ? { rejectUnauthorized: true }
+        : true,
   });
 
   await client.connect();
