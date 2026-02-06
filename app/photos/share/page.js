@@ -1,13 +1,10 @@
 'use client';
 
-import { useActionState, useState } from 'react';
+import { useState } from 'react';
 
 import ImagePicker from '../image-picker';
-import { sharePhoto } from '@/lib/actions';
-import PhotosFormSubmit from '../photos-form-submit';
 
 export default function SharePhotoPage() {
-  const [state, formAction] = useActionState(sharePhoto, { message: null });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,21 +19,21 @@ export default function SharePhotoPage() {
 
   return (
     <>
-      <header className="mx-auto mb-12 w-[92%] max-w-[85rem] space-y-4 px-4 pt-24 sm:pt-32 md:mb-20 md:pt-40 lg:pt-48">
+      <header className="mx-auto mb-8 max-w-3xl px-4 pt-24 text-center sm:pt-32 md:mb-20 md:pt-40">
         <h1 className="text-2xl font-bold text-slate-800 sm:text-3xl">
           Share your{' '}
           <span className="bg-gradient-to-r from-emerald-600 to-emerald-500 bg-clip-text text-transparent">
             favorite photo
           </span>
         </h1>
-        <p className="text-lg text-slate-600">
+        <p className="mt-2 text-lg text-slate-600">
           Or any other photo you feel needs sharing!
         </p>
       </header>
-      <main className="mx-auto w-[92%] max-w-[85rem] px-4 sm:px-0">
+      <main className="mx-auto w-[92%] max-w-[85rem] px-4 pb-24 sm:px-0">
         <form
-          action={formAction}
-          className="max-w-3xl space-y-6 rounded-xl bg-beige-50 p-4 shadow-md shadow-stone-300 sm:p-6 md:p-8"
+          onSubmit={(e) => e.preventDefault()}
+          className="mx-auto max-w-3xl space-y-6 rounded-xl bg-beige-50 p-4 shadow-md shadow-stone-300 sm:p-6 md:p-8"
         >
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="space-y-2">
@@ -126,13 +123,20 @@ export default function SharePhotoPage() {
             />
           </div>
           <ImagePicker label="Your image" name="image" />
-          {state.message && (
-            <p className="rounded-lg bg-amber-100 p-3 text-amber-800">
-              {state.message}
+          <div className="pt-2">
+            <p className="mb-3 text-sm text-slate-600">
+              Demo mode: uploads are disabled in this deployment.
             </p>
-          )}
-          <div className="flex justify-end pt-2">
-            <PhotosFormSubmit />
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                disabled
+                className="cursor-not-allowed rounded-lg bg-emerald-600 px-5 py-2.5 font-semibold text-white opacity-60"
+                title="Uploads are disabled in demo mode"
+              >
+                Share Photo
+              </button>
+            </div>
           </div>
         </form>
       </main>

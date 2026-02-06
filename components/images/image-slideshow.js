@@ -15,7 +15,7 @@ const images = [
   { image: eiffeltowerImg, alt: 'Golden Hour Over Paris' },
   { image: machupicchuImg, alt: 'The Lost City in the Clouds' },
   { image: grandcanyonImg, alt: 'Canyon of Fire and Stone' },
-  { image: fushimiImg, alt: 'Spring Tranquility in Kyotoe' },
+  { image: fushimiImg, alt: 'Spring Tranquility in Kyoto' },
   { image: newyorkImg, alt: 'City That Never Sleeps' },
   { image: morainelakeImg, alt: 'Alpine Reflections' },
   { image: santoriniImg, alt: 'Aegean Sunset' },
@@ -40,11 +40,12 @@ export default function ImageSlideshow() {
           key={i}
           src={img.image}
           alt={img.alt}
-          className={`absolute inset-0 h-full w-full object-cover transition-all duration-500 ease-in-out ${
-            i === currentImageIndex
+          fill
+          sizes="(min-width: 768px) 40rem, 100vw"
+          className={`absolute inset-0 object-cover transition duration-500 ease-in-out ${i === currentImageIndex
               ? 'z-10 scale-100 opacity-100'
               : 'scale-110 -translate-x-4 -rotate-[5deg] opacity-0'
-          }`}
+            }`}
         />
       ))}
     </div>
