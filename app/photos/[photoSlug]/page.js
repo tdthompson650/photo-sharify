@@ -46,7 +46,6 @@ export default async function PhotoDetailsPage({ params }) {
             fill
             sizes="(min-width: 768px) 40rem, 100vw"
             className="object-cover"
-            priority
           />
         </div>
         <div className="space-y-6">

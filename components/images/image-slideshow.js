@@ -43,6 +43,7 @@ export default function ImageSlideshow() {
           aria-hidden={i !== currentImageIndex}
           fill
           sizes="(min-width: 768px) 40rem, 100vw"
+          priority={i === 0}
           className={
             'absolute inset-0 object-cover transition duration-500 ease-in-out ' +
             (i === currentImageIndex
