@@ -12,6 +12,9 @@ export const metadata = {
   description: 'Share your favorite photos with a community of photography enthusiasts.',
 };
 
+// Required for nonce-based CSP: Next.js applies nonces during SSR from the request.
+export const dynamic = 'force-dynamic';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={dmSans.variable}>

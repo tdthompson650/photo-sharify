@@ -1,0 +1,62 @@
+diff --git a/node_modules/next/dist/client/components/app-router-announcer.js b/node_modules/next/dist/client/components/app-router-announcer.js
+index f394bfb..b37b8f9 100644
+--- a/node_modules/next/dist/client/components/app-router-announcer.js
++++ b/node_modules/next/dist/client/components/app-router-announcer.js
+@@ -13,22 +13,16 @@ const _reactdom = require("react-dom");
+ const ANNOUNCER_TYPE = 'next-route-announcer';
+ const ANNOUNCER_ID = '__next-route-announcer__';
+ function getAnnouncerNode() {
+-    const existingAnnouncer = document.getElementsByName(ANNOUNCER_TYPE)[0];
+-    if (existingAnnouncer?.shadowRoot?.childNodes[0]) {
+-        return existingAnnouncer.shadowRoot.childNodes[0];
++    const existing = document.getElementsByTagName(ANNOUNCER_TYPE)[0];
++    if (existing?.firstElementChild) {
++        return existing.firstElementChild;
+     } else {
+         const container = document.createElement(ANNOUNCER_TYPE);
+-        container.style.cssText = 'position:absolute';
+         const announcer = document.createElement('div');
+         announcer.ariaLive = 'assertive';
+         announcer.id = ANNOUNCER_ID;
+         announcer.role = 'alert';
+-        announcer.style.cssText = 'position:absolute;border:0;height:1px;margin:-1px;padding:0;width:1px;clip:rect(0 0 0 0);overflow:hidden;white-space:nowrap;word-wrap:normal';
+-        // Use shadow DOM here to avoid any potential CSS bleed
+-        const shadow = container.attachShadow({
+-            mode: 'open'
+-        });
+-        shadow.appendChild(announcer);
++        container.appendChild(announcer);
+         document.body.appendChild(container);
+         return announcer;
+     }
+diff --git a/node_modules/next/dist/esm/client/components/app-router-announcer.js b/node_modules/next/dist/esm/client/components/app-router-announcer.js
+index 56e0dc0..3993495 100644
+--- a/node_modules/next/dist/esm/client/components/app-router-announcer.js
++++ b/node_modules/next/dist/esm/client/components/app-router-announcer.js
+@@ -3,22 +3,16 @@ import { createPortal } from 'react-dom';
+ const ANNOUNCER_TYPE = 'next-route-announcer';
+ const ANNOUNCER_ID = '__next-route-announcer__';
+ function getAnnouncerNode() {
+-    const existingAnnouncer = document.getElementsByName(ANNOUNCER_TYPE)[0];
+-    if (existingAnnouncer?.shadowRoot?.childNodes[0]) {
+-        return existingAnnouncer.shadowRoot.childNodes[0];
++    const existing = document.getElementsByTagName(ANNOUNCER_TYPE)[0];
++    if (existing?.firstElementChild) {
++        return existing.firstElementChild;
+     } else {
+         const container = document.createElement(ANNOUNCER_TYPE);
+-        container.style.cssText = 'position:absolute';
+         const announcer = document.createElement('div');
+         announcer.ariaLive = 'assertive';
+         announcer.id = ANNOUNCER_ID;
+         announcer.role = 'alert';
+-        announcer.style.cssText = 'position:absolute;border:0;height:1px;margin:-1px;padding:0;width:1px;clip:rect(0 0 0 0);overflow:hidden;white-space:nowrap;word-wrap:normal';
+-        // Use shadow DOM here to avoid any potential CSS bleed
+-        const shadow = container.attachShadow({
+-            mode: 'open'
+-        });
+-        shadow.appendChild(announcer);
++        container.appendChild(announcer);
+         document.body.appendChild(container);
+         return announcer;
+     }
