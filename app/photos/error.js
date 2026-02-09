@@ -7,7 +7,7 @@ export default function Error({ error }) {
         An error occurred
       </h1>
       <p className="mt-4 text-lg font-medium text-slate-600 sm:text-xl">
-        Error: {error.message}
+        Something went wrong while loading photos. Please try again later.
       </p>
     </main>
   );
